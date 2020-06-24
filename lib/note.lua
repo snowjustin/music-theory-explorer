@@ -1,8 +1,8 @@
 -- A circle that displays the note we are inspecting as a circle
 
-Note = Object.extend(Object)
+Note = Object:extend()
 
-function Note.new(self, x, y)
+function Note:new(x, y)
     -- circle settings
     self.x = x
     self.y = y
@@ -10,7 +10,7 @@ function Note.new(self, x, y)
     self.shrink = false
 end
 
-function Note.update(self, dt)
+function Note:update(dt)
     local max_radius = 50
     local min_radius = 10
 
@@ -28,6 +28,6 @@ function Note.update(self, dt)
     end
 end
 
-function Note.draw(self)
+function Note:draw()
     love.graphics.circle("fill", self.x, self.y, self.radius)
 end

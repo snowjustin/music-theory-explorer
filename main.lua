@@ -2,7 +2,7 @@ function love.load()
     Object = require "lib.classic"
     require "lib.note"
 
-    note = Note()
+    note = Note(100, 100)
 end
 
 function love.update(dt)
