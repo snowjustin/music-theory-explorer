@@ -8,7 +8,7 @@ function love.load()
     MAX_HEIGHT = love.graphics.getHeight() - 100
     NOTE_OFFSET = 50
     ROW_OFFSET = 100
-
+    active_note = nil
     notes = {
         Note(MAX_WIDTH / 4, MAX_HEIGHT / 4, NOTE_A),
         Note(MAX_WIDTH / 4 * 2, (MAX_HEIGHT / 4) + NOTE_OFFSET, NOTE_A .. NOTE_SHARP),
@@ -32,7 +32,27 @@ function love.update(dt)
 end
 
 function love.draw()
-    for i=1, #notes do
-        notes[i]:draw()
+    if active_note ~= nil then
+        active_note:draw()
+    else
+        for i=1, #notes do
+            notes[i]:draw()
+        end
     end
+end
+
+function love.mousereleased(x, y, button, istouch, presses)
+    -- if the mouse is released on a note then we navigate to the menu for the note and hide everything else.
+    for i=1, #notes do
+        local r = notes[i].radius
+        local nx = notes[i].x
+        local ny = notes[i].y
+
+        if (x >= nx - r and x <= nx + r and y >= ny - r and y <= ny + r) and (button == 1 or istouch) then
+            if active_note == nil then
+                active_note = notes[i]
+            end
+        end
+    end
+
 end

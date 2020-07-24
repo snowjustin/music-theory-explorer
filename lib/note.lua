@@ -26,6 +26,7 @@ function Note:new(x, y, text)
     local font = love.graphics.getFont()
     self.color = {0, 0, 0}
     self.text = love.graphics.newText(font, {self.color, text})
+    self.activeTonic = false
 end
 
 function Note:update(dt)
