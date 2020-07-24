@@ -4,6 +4,7 @@
 -- Some constants about notes
 NOTE_MAX_RADIUS = 40
 NOTE_MIN_RADIUS = 25
+NOTE_SCALE_FACTOR = 8
 NOTE_A = "A"
 NOTE_B = "B"
 NOTE_C = "C"
@@ -36,9 +37,9 @@ function Note:update(dt)
 
 
     if self.shrink then
-        self.radius = self.radius - 8 * dt
+        self.radius = self.radius - NOTE_SCALE_FACTOR * dt
     else
-        self.radius = self.radius + 8 * dt
+        self.radius = self.radius + NOTE_SCALE_FACTOR * dt
     end
 end
 

@@ -3,7 +3,7 @@ function love.load()
     require "lib.note"
     
     
-    -- Place 8 notes in random places on the screen
+    -- Place 8 notes on the screen with random sizes
     MAX_WIDTH = love.graphics.getWidth() - 100
     MAX_HEIGHT = love.graphics.getHeight() - 100
     NOTE_OFFSET = 50
