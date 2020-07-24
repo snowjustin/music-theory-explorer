@@ -4,24 +4,24 @@ function love.load()
     
     
     -- Place 8 notes in random places on the screen
-    MAX_WIDTH = love.graphics.getWidth() - 50
-    MAX_HEIGHT = love.graphics.getHeight() - 50
-    MIN_WIDTH = 50
-    MIN_HEIGHT = 50
+    MAX_WIDTH = love.graphics.getWidth() - 100
+    MAX_HEIGHT = love.graphics.getHeight() - 100
+    NOTE_OFFSET = 50
+    ROW_OFFSET = 100
 
     notes = {
         Note(MAX_WIDTH / 4, MAX_HEIGHT / 4, NOTE_A),
-        -- Note(),
-        -- Note(),
-        -- Note(),
-        -- Note(),
-        -- Note(),
-        -- Note(),
-        -- Note(),
-        -- Note(),
-        -- Note(),
-        -- Note(),
-        -- Note(),
+        Note(MAX_WIDTH / 4 * 2, (MAX_HEIGHT / 4) + NOTE_OFFSET, NOTE_A .. NOTE_SHARP),
+        Note(MAX_WIDTH / 4 * 3, (MAX_HEIGHT / 4), NOTE_B),
+        Note(MAX_WIDTH, (MAX_HEIGHT / 4) + NOTE_OFFSET, NOTE_C),
+        Note(MAX_WIDTH / 4, MAX_HEIGHT / 4 + ROW_OFFSET, NOTE_C .. NOTE_SHARP),
+        Note(MAX_WIDTH / 4 * 2, (MAX_HEIGHT / 4) + ROW_OFFSET + NOTE_OFFSET, NOTE_D),
+        Note(MAX_WIDTH / 4 * 3, (MAX_HEIGHT / 4) + ROW_OFFSET, NOTE_D .. NOTE_SHARP),
+        Note(MAX_WIDTH, (MAX_HEIGHT / 4) + ROW_OFFSET + NOTE_OFFSET, NOTE_E),
+        Note(MAX_WIDTH / 4, MAX_HEIGHT / 4 + (ROW_OFFSET*2), NOTE_F),
+        Note(MAX_WIDTH / 4 * 2, (MAX_HEIGHT / 4) + (ROW_OFFSET*2) + NOTE_OFFSET, NOTE_F .. NOTE_SHARP),
+        Note(MAX_WIDTH / 4 * 3, (MAX_HEIGHT / 4) + (ROW_OFFSET*2), NOTE_G),
+        Note(MAX_WIDTH, (MAX_HEIGHT / 4) + (ROW_OFFSET*2) + NOTE_OFFSET, NOTE_G .. NOTE_SHARP)
     }
 end
 

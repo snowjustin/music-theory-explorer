@@ -2,7 +2,8 @@
 
 
 -- Some constants about notes
-NOTE_RADIUS = 40
+NOTE_MAX_RADIUS = 40
+NOTE_MIN_RADIUS = 25
 NOTE_A = "A"
 NOTE_B = "B"
 NOTE_C = "C"
@@ -19,7 +20,7 @@ function Note:new(x, y, text)
     -- circle settings
     self.x = x
     self.y = y
-    self.radius = NOTE_RADIUS
+    self.radius = math.random(NOTE_MIN_RADIUS, NOTE_MAX_RADIUS)
     self.shrink = false
     local font = love.graphics.getFont()
     self.color = {0, 0, 0}
@@ -27,12 +28,9 @@ function Note:new(x, y, text)
 end
 
 function Note:update(dt)
-    local max_radius = NOTE_RADIUS
-    local min_radius = 25
-
-    if self.radius >= max_radius then
+    if self.radius >= NOTE_MAX_RADIUS then
         self.shrink = true
-    elseif self.radius <= min_radius then
+    elseif self.radius <= NOTE_MIN_RADIUS then
         self.shrink = false
     end
 
