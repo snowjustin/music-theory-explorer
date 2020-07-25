@@ -43,16 +43,26 @@ end
 
 function love.mousereleased(x, y, button, istouch, presses)
     -- if the mouse is released on a note then we navigate to the menu for the note and hide everything else.
-    for i=1, #notes do
-        local r = notes[i].radius
-        local nx = notes[i].x
-        local ny = notes[i].y
+    if active_note ~= nil then
+        local r = active_note.radius
+        local nx = active_note.x
+        local ny = active_note.y
+        if (x < nx - r or x > nx + r or y < ny - r or y > ny + r) and (button == 1 or istouch) then
+            active_note:mousereleased(false)
+            active_note = nil
+        end
+    else
+        for i=1, #notes do
+            local r = notes[i].radius
+            local nx = notes[i].x
+            local ny = notes[i].y
 
-        if (x >= nx - r and x <= nx + r and y >= ny - r and y <= ny + r) and (button == 1 or istouch) then
-            if active_note == nil then
-                active_note = notes[i]
+            if (x >= nx - r and x <= nx + r and y >= ny - r and y <= ny + r) and (button == 1 or istouch) then
+                if active_note == nil then
+                    active_note = notes[i]
+                    notes[i]:mousereleased(true)
+                end
             end
         end
     end
-
 end

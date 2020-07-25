@@ -47,6 +47,15 @@ end
 function Note:draw()
     local textWidth = self.text:getWidth()
     local textHeight = self.text:getHeight()
-    love.graphics.circle("fill", self.x, self.y, self.radius)
-    love.graphics.draw(self.text, self.x, self.y, 0, 1, 1, textWidth / 2, textHeight / 2)
+    local x, y = self.x, self.y
+    if self.activeTonic then
+        x, y = love.graphics.getWidth()/2, love.graphics.getHeight()/2
+    end
+
+    love.graphics.circle("fill", x, y, self.radius)
+    love.graphics.draw(self.text, x, y, 0, 1, 1, textWidth / 2, textHeight / 2)
+end
+
+function Note:mousereleased(value)
+    self.activeTonic = value
 end
