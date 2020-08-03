@@ -36,8 +36,9 @@ function Note:update(dt)
         self.shrink = false
     end
 
-
-    if self.shrink then
+    if self.activeTonic then
+        self.radius = NOTE_MAX_RADIUS
+    elseif self.shrink then
         self.radius = self.radius - NOTE_SCALE_FACTOR * dt
     else
         self.radius = self.radius + NOTE_SCALE_FACTOR * dt
