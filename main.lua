@@ -1,6 +1,7 @@
 function love.load()
     Object = require "lib.classic"
     require "lib.note"
+    require "lib.menu"
     
     
     -- Place 8 notes on the screen with random sizes
@@ -23,17 +24,24 @@ function love.load()
         Note(MAX_WIDTH / 4 * 3, (MAX_HEIGHT / 4) + (ROW_OFFSET*2), NOTE_G),
         Note(MAX_WIDTH, (MAX_HEIGHT / 4) + (ROW_OFFSET*2) + NOTE_OFFSET, NOTE_G .. NOTE_SHARP)
     }
+    chord_menu = Menu("Build Chord")
+
 end
 
 function love.update(dt)
+    -- Update notes
     for i=1, #notes do
         notes[i]:update(dt)
     end
+
+    -- Update menus
+    chord_menu:update(dt, active_note)
 end
 
 function love.draw()
     if active_note ~= nil then
         active_note:draw()
+        chord_menu:draw()
     else
         for i=1, #notes do
             notes[i]:draw()
