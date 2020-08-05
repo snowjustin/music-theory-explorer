@@ -24,7 +24,8 @@ function love.load()
         Note(MAX_WIDTH / 4 * 3, (MAX_HEIGHT / 4) + (ROW_OFFSET*2), NOTE_G),
         Note(MAX_WIDTH, (MAX_HEIGHT / 4) + (ROW_OFFSET*2) + NOTE_OFFSET, NOTE_G .. NOTE_SHARP)
     }
-    chord_menu = Menu("Build Chord")
+    chord_menu = Menu("Build Chord", active_note, POSITION_BOTTOM)
+    scale_menu = Menu("Build Scale", active_note, POSITION_TOP)
 
 end
 
@@ -36,12 +37,14 @@ function love.update(dt)
 
     -- Update menus
     chord_menu:update(dt, active_note)
+    scale_menu:update(dt, active_note)
 end
 
 function love.draw()
     if active_note ~= nil then
         active_note:draw()
         chord_menu:draw()
+        scale_menu:draw()
     else
         for i=1, #notes do
             notes[i]:draw()

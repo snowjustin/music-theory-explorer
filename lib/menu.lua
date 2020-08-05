@@ -5,10 +5,12 @@ MENU_WIDTH = 200
 MENU_BUFFER = 20
 DEFAULT_X = 10
 DEFAULT_Y = 10
+POSITION_TOP = 'top'
+POSITION_BOTTOM = 'bottom'
 
 Menu = Object:extend()
 
-function Menu:new(label, parent)
+function Menu:new(label, parent, position)
     -- setup label
     local font = love.graphics.getFont()
     self.color = {0, 0, 1}
@@ -19,6 +21,7 @@ function Menu:new(label, parent)
     self.width = MENU_WIDTH
     
     -- set position of menu item
+    self.position = position
     self:updateParent(parent)
     
 end
@@ -45,11 +48,17 @@ function Menu:updateParent(p)
         self.x = DEFAULT_X
         self.y = DEFAULT_Y
     else
-        self.x = p.x - (self.width / 2)
-        self.y = p.y - p:getHeight() - (self.height / 2) - MENU_BUFFER
+        
+        if self.position == POSITION_TOP then
+            self.x = p.x - (self.width / 2)
+            self.y = p.y - (p:getHeight()/2) - MENU_BUFFER - self.height -- subtracting height of menu here to not overlap
+        else
+            self.x = p.x - (self.width / 2)
+            self.y = p.y + (p:getHeight() / 2) + MENU_BUFFER
+        end
     end
 
-    if self.x > self.y then
+    if self.width > self.height then
         self.rx = self.height * 0.325
         self.ry = self.height * 0.325
     else
