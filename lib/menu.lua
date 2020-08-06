@@ -1,10 +1,11 @@
 -- A simple navigation system
 
-MENU_HEIGHT = 100
-MENU_WIDTH = 200
+MENU_HEIGHT = 75
+MENU_WIDTH = 150
 MENU_BUFFER = 20
 DEFAULT_X = 10
 DEFAULT_Y = 10
+CORNER_SCALING = 0.5
 POSITION_TOP = 'top'
 POSITION_BOTTOM = 'bottom'
 
@@ -37,6 +38,7 @@ function Menu:draw()
     local label_x, label_y = (self.width / 2) + x, (self.height / 2) + y
     -- because x and y for drawing rectangles indicates the top left corner we adjust the text to be placed
     -- in the center of our rectangle.
+    love.graphics.line(self.x + self.width/2, self.y + self.height/2, self.parent.x, self.parent.y)
     love.graphics.rectangle("fill", x, y, self.width, self.height, self.rx, self.ry)
     love.graphics.draw(self.label, label_x, label_y, 0, 1, 1, textWidth / 2, textHeight / 2)
 end
@@ -59,10 +61,13 @@ function Menu:updateParent(p)
     end
 
     if self.width > self.height then
-        self.rx = self.height * 0.325
-        self.ry = self.height * 0.325
+        self.rx = self.height * CORNER_SCALING
+        self.ry = self.height * CORNER_SCALING
     else
-        self.rx = self.width * 0.325
-        self.ry = self.width * 0.325
+        self.rx = self.width * CORNER_SCALING
+        self.ry = self.width * CORNER_SCALING
     end
+end
+
+function Menu:mouseReleased()
 end

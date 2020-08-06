@@ -24,8 +24,8 @@ function love.load()
         Note(MAX_WIDTH / 4 * 3, (MAX_HEIGHT / 4) + (ROW_OFFSET*2), NOTE_G),
         Note(MAX_WIDTH, (MAX_HEIGHT / 4) + (ROW_OFFSET*2) + NOTE_OFFSET, NOTE_G .. NOTE_SHARP)
     }
-    chord_menu = Menu("Build Chord", active_note, POSITION_BOTTOM)
-    scale_menu = Menu("Build Scale", active_note, POSITION_TOP)
+    chord_menu = Menu("Chord", active_note, POSITION_BOTTOM)
+    scale_menu = Menu("Scale", active_note, POSITION_TOP)
 
 end
 

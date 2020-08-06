@@ -1,6 +1,5 @@
 -- A circle that displays the note we are inspecting as a circle
 
-
 -- Some constants about notes
 NOTE_MAX_RADIUS = 40
 NOTE_MIN_RADIUS = 25
