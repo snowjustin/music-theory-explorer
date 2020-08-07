@@ -1,20 +1,6 @@
 -- A circle that displays the note we are inspecting as a circle
 
--- Some constants about notes
-NOTE_MAX_RADIUS = 40
-NOTE_MIN_RADIUS = 25
-NOTE_SCALE_FACTOR = 8
-NOTE_A = "A"
-NOTE_B = "B"
-NOTE_C = "C"
-NOTE_D = "D"
-NOTE_E = "E"
-NOTE_F = "F"
-NOTE_G = "G"
-NOTE_SHARP = "#"
-NOTE_FLAT = "b"
-
-Note = Object:extend()
+Note = Entity:extend()
 
 function Note:new(x, y, text)
     -- circle settings

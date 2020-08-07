@@ -1,22 +1,8 @@
 -- A simple navigation system
 
-MENU_HEIGHT = 75
-MENU_WIDTH = 150
-MENU_BUFFER = 20
-DEFAULT_X = 10
-DEFAULT_Y = 10
-CORNER_SCALING = 0.5
-POSITION_TOP = 'top'
-POSITION_BOTTOM = 'bottom'
-
-Menu = Object:extend()
+Menu = Entity:extend()
 
 function Menu:new(label, parent, position)
-    -- setup label
-    local font = love.graphics.getFont()
-    self.color = {0, 0, 1}
-    self.label = love.graphics.newText(font, {self.color, label})
-
     -- configure size
     self.height = MENU_HEIGHT
     self.width = MENU_WIDTH
@@ -24,7 +10,6 @@ function Menu:new(label, parent, position)
     -- set position of menu item
     self.position = position
     self:updateParent(parent)
-    
 end
 
 function Menu:update(dt, new_parent)
@@ -67,7 +52,4 @@ function Menu:updateParent(p)
         self.rx = self.width * CORNER_SCALING
         self.ry = self.width * CORNER_SCALING
     end
-end
-
-function Menu:mouseReleased()
 end
